@@ -8,6 +8,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 @Service
@@ -16,11 +17,11 @@ public class FileService {
 
     private final FileRepository fileRepository;
 
-    public FileDB store(MultipartFile file) throws IOException {
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+    public void store(MultipartFile file) throws IOException {
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
         FileDB fileDB = new FileDB(fileName, file.getContentType(), file.getBytes());
 
-        return fileRepository.save(fileDB);
+        fileRepository.save(fileDB);
     }
 
     public FileDB getFile(String id) {

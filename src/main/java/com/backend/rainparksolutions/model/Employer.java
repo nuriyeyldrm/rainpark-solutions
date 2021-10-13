@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Setter
 @Getter
@@ -20,9 +21,11 @@ import java.io.Serializable;
 @Table(name = "employers")
 public class Employer implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
-    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @SequenceGenerator(name = "employer_sequence", sequenceName = "employer_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employer_sequence")
     private Long id;
 
     @Size(max = 50)
@@ -89,4 +92,50 @@ public class Employer implements Serializable {
     @Column(nullable = false)
     private String positionStatus;
 
+    public Employer(String companyName, String fullName, String position, String companyAddress, String city,
+                    String state, String zipCode, String email, String phoneNumber, String jobCategory,
+                    String jobTitle, Double salaryRange, String positionLocatedCity, String positionStatus) {
+        this.companyName = companyName;
+        this.fullName = fullName;
+        this.position = position;
+        this.companyAddress = companyAddress;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.jobCategory = jobCategory;
+        this.jobTitle = jobTitle;
+        this.salaryRange = salaryRange;
+        this.positionLocatedCity = positionLocatedCity;
+        this.positionStatus = positionStatus;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employer)) return false;
+        Employer employer = (Employer) o;
+        return Objects.equals(id, employer.id) &&
+                Objects.equals(companyName, employer.companyName) &&
+                Objects.equals(fullName, employer.fullName) &&
+                Objects.equals(position, employer.position) &&
+                Objects.equals(companyAddress, employer.companyAddress) &&
+                Objects.equals(city, employer.city) &&
+                Objects.equals(state, employer.state) &&
+                Objects.equals(zipCode, employer.zipCode) &&
+                Objects.equals(email, employer.email) &&
+                Objects.equals(phoneNumber, employer.phoneNumber) &&
+                Objects.equals(jobCategory, employer.jobCategory) &&
+                Objects.equals(jobTitle, employer.jobTitle) &&
+                Objects.equals(salaryRange, employer.salaryRange) &&
+                Objects.equals(positionLocatedCity, employer.positionLocatedCity) &&
+                Objects.equals(positionStatus, employer.positionStatus);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, companyName, fullName, position, companyAddress, city, state, zipCode, email,
+                phoneNumber, jobCategory, jobTitle, salaryRange, positionLocatedCity, positionStatus);
+    }
 }

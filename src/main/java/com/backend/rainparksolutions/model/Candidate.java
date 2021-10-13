@@ -18,12 +18,14 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @Entity
-@Table(name = "questions")
-public class Question implements Serializable {
+@Table(name = "candidates")
+public class Candidate implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @SequenceGenerator(name = "candidate_sequence", sequenceName = "candidate_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "candidate_sequence")
     private Long id;
 
     @Size(max = 50)
@@ -59,8 +61,8 @@ public class Question implements Serializable {
 
     private String tools;
 
-    public Question(String firstName, String lastName, String phoneNumber, String email, String jobTitle,
-                    String country, Integer experience, String tools) {
+    public Candidate(String firstName, String lastName, String phoneNumber, String email, String jobTitle,
+                     String country, Integer experience, String tools) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -74,17 +76,17 @@ public class Question implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Question)) return false;
-        Question question = (Question) o;
-        return Objects.equals(id, question.id) &&
-                Objects.equals(firstName, question.firstName) &&
-                Objects.equals(lastName, question.lastName) &&
-                Objects.equals(phoneNumber, question.phoneNumber) &&
-                Objects.equals(email, question.email) &&
-                Objects.equals(jobTitle, question.jobTitle) &&
-                Objects.equals(country, question.country) &&
-                Objects.equals(experience, question.experience) &&
-                Objects.equals(tools, question.tools);
+        if (!(o instanceof Candidate)) return false;
+        Candidate candidate = (Candidate) o;
+        return Objects.equals(id, candidate.id) &&
+                Objects.equals(firstName, candidate.firstName) &&
+                Objects.equals(lastName, candidate.lastName) &&
+                Objects.equals(phoneNumber, candidate.phoneNumber) &&
+                Objects.equals(email, candidate.email) &&
+                Objects.equals(jobTitle, candidate.jobTitle) &&
+                Objects.equals(country, candidate.country) &&
+                Objects.equals(experience, candidate.experience) &&
+                Objects.equals(tools, candidate.tools);
     }
 
     @Override
