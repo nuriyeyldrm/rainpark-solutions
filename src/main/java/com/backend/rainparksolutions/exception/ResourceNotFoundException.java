@@ -1,4 +1,4 @@
-package com.backend.rainparksolutions.repository;
+package com.backend.rainparksolutions.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
