@@ -62,7 +62,7 @@ public class Employer implements Serializable {
     @Email(message = "Please enter valid email")
     @NotNull(message = "Please enter your email")
     @Size(min = 5, max = 254)
-    @Column(nullable = false, unique = true, length = 254)
+    @Column(nullable = false, length = 254)
     private String email;
 
     @Pattern(regexp = "^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$",

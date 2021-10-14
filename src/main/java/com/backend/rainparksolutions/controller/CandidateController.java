@@ -29,6 +29,6 @@ public class CandidateController {
         candidateService.create(candidate);
         Map<String, Boolean> map = new HashMap<>();
         map.put("success", true);
-        return ResponseEntity.status(HttpStatus.OK).body(map);
+        return ResponseEntity.status(HttpStatus.CREATED).body(map);
     }
 }

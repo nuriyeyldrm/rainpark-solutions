@@ -1,5 +1,6 @@
 package com.backend.rainparksolutions.service;
 
+import com.backend.rainparksolutions.exception.BadRequestException;
 import com.backend.rainparksolutions.model.Employer;
 import com.backend.rainparksolutions.repository.EmployerRepository;
 import lombok.AllArgsConstructor;
@@ -11,7 +12,7 @@ public class EmployerService {
 
     private final EmployerRepository employerRepository;
 
-    public void create(Employer employer) {
+    public void create(Employer employer) throws BadRequestException {
         employerRepository.save(employer);
     }
 }
