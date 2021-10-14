@@ -28,36 +28,39 @@ public class Employer implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employer_sequence")
     private Long id;
 
-    @Size(max = 50)
+    @Size(max = 50, message = "you have exceeded the size")
     @NotNull(message = "Please enter your company name")
     @Column(nullable = false, length = 50)
     private String companyName;
 
-    @Size(max = 50)
+    @Size(max = 50, message = "you have exceeded the size")
     @NotNull(message = "Please enter your full name")
     @Column(nullable = false, length = 50)
     private String fullName;
 
-    @Size(max = 50)
+    @Size(max = 50, message = "you have exceeded the size")
     @NotNull(message = "Please enter your position/title")
     @Column(nullable = false, length = 50)
     private String position;
 
+    @Size(max = 250, message = "you have exceeded the size")
     @NotNull(message = "Please enter company address")
-    @Column(nullable = false)
+    @Column(nullable = false, length = 250)
     private String companyAddress;
 
+    @Size(max = 15, message = "you have exceeded the size")
     @NotNull(message = "Please enter city")
-    @Column(nullable = false)
+    @Column(nullable = false, length = 15)
     private String city;
 
+    @Size(max = 15, message = "you have exceeded the size")
     @NotNull(message = "Please enter state")
-    @Column(nullable = false)
+    @Column(nullable = false, length = 15)
     private String state;
 
     @NotNull(message = "Please enter zip code")
     @Column(nullable = false)
-    private String zipCode;
+    private Integer zipCode;
 
     @Email(message = "Please enter valid email")
     @NotNull(message = "Please enter your email")
@@ -69,32 +72,36 @@ public class Employer implements Serializable {
             message = "Please enter valid phone number")
     @NotNull(message = "Please enter your phone number")
     @Size(min = 14, max= 14, message = "Phone number should be exact 10 characters")
-    @Column(length = 14)
+    @Column(nullable = false, length = 14)
     private String phoneNumber;
 
+    @Size(max = 50, message = "you have exceeded the size")
     @NotNull(message = "Please enter job category")
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String jobCategory;
 
+    @Size(max = 50, message = "you have exceeded the size")
     @NotNull(message = "Please enter job title")
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String jobTitle;
 
     @NotNull(message = "Please enter salary range")
     @Column(nullable = false)
-    private Double salaryRange;
+    private String salaryRange;
 
+    @Size(max = 15, message = "you have exceeded the size")
     @NotNull(message = "Please enter city where position is located")
-    @Column(nullable = false)
+    @Column(nullable = false, length = 15)
     private String positionLocatedCity;
 
+    @Size(max = 50, message = "you have exceeded the size")
     @NotNull(message = "Please enter city where position status")
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String positionStatus;
 
     public Employer(String companyName, String fullName, String position, String companyAddress, String city,
-                    String state, String zipCode, String email, String phoneNumber, String jobCategory,
-                    String jobTitle, Double salaryRange, String positionLocatedCity, String positionStatus) {
+                    String state, Integer zipCode, String email, String phoneNumber, String jobCategory,
+                    String jobTitle, String salaryRange, String positionLocatedCity, String positionStatus) {
         this.companyName = companyName;
         this.fullName = fullName;
         this.position = position;

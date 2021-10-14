@@ -13,7 +13,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -26,15 +28,18 @@ public class FileController {
     private final FileService fileService;
 
     @PostMapping("/upload")
-    public ResponseEntity<FileDAO> uploadFile(@RequestParam("file") MultipartFile file) {
-        String message = "";
+    public ResponseEntity<Map<String, String>> uploadFile(@RequestParam("file") MultipartFile file) {
         try {
             fileService.store(file);
-            message = "Uploaded the file successfully: " + file.getOriginalFilename();
-            return ResponseEntity.status(HttpStatus.OK).body(new FileDAO(message));
+            Map<String, String> map = new HashMap<>();
+            map.put("message", "Uploaded the file successfully: " + file.getOriginalFilename());
+            return ResponseEntity.status(HttpStatus.OK).body(map);
+
         } catch (Exception e) {
-            message = "Could not upload the file: " + file.getOriginalFilename() + "!";
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new FileDAO(message));
+
+            Map<String, String> map = new HashMap<>();
+            map.put("message", "Could not upload the file: " + file.getOriginalFilename() + "!");
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(map);
         }
     }
 
@@ -43,7 +48,7 @@ public class FileController {
         List<FileDAO> files = fileService.getAllFiles().map(dbFile -> {
             String fileDownloadUri = ServletUriComponentsBuilder
                     .fromCurrentContextPath()
-                    .path("/files/")
+                    .path("/api/files/")
                     .path(dbFile.getId())
                     .toUriString();
 
