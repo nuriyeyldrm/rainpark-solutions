@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-@Transactional
 @Repository
+@Transactional(readOnly = true)
 public interface CandidateRepository extends JpaRepository<Candidate, Long> {
 
     Optional<Candidate> findByEmail(String email) throws ResourceNotFoundException;

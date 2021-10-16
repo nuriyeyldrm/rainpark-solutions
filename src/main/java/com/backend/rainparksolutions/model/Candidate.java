@@ -17,8 +17,8 @@ import java.util.Objects;
 @Getter
 @ToString
 @NoArgsConstructor
-@Entity
 @Table(name = "candidates")
+@Entity
 public class Candidate implements Serializable {
 
     private static final long serialVersionUID = 1L;
